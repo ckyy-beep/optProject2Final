@@ -12,9 +12,6 @@ import java.util.List;
 public class HelloApplication extends Application {
     private static Program program;
     public static Program getProgram() {return program;}
-    private int yNextStatusScreen;
-    private int xNextStatusScreen;
-
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -33,6 +30,14 @@ public class HelloApplication extends Application {
         RentalFactory factory3 = new BoschFactory();
         Drill drill01 = factory3.createDrill();
         getProgram().rentals.add(drill01);
+
+        Gebruiker gebruiker01 = new Gebruiker("Jan", "admin");
+        Gebruiker gebnruiker02 = new Gebruiker("Piet", "admin");
+        Gebruiker gebruiker03 = new Gebruiker("Klaas", "admin");
+
+        getProgram().addGebruikers(gebruiker01);
+        getProgram().addGebruikers(gebnruiker02);
+        getProgram().addGebruikers(gebruiker03);
 
     }
 

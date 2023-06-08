@@ -1,5 +1,7 @@
 package com.example.optproject2final;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -8,17 +10,52 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Program {
+    // Fields
     private Stage primaryStage;
     private Screens currentScreen;
     private Scene scene;
-    public List<Rentable> rentals;
-    private List<RentableObserver> observers;
+    public ObservableList<Rentable> rentals;
+    private final List<Gebruiker> gebruikers;
+    private Gebruiker currentUser;
 
+
+    // Getters and Setters
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
+    public void setCurrentScreen(Screens currentScreen) {
+        this.currentScreen = currentScreen;
+    }
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
+    public void addGebruikers(Gebruiker gebruiker) {this.gebruikers.add(gebruiker);}
+    public void setCurrentUser(Gebruiker currentUser) {
+        this.currentUser = currentUser;
+    }
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+    public Screens getCurrentScreen() {
+        return currentScreen;
+    }
+    public Scene getScene() {
+        return scene;
+    }
+    public List<Rentable> getRentals() {
+        return rentals;
+    }
+    public List<Gebruiker> getGebruikers() {
+        return gebruikers;
+    }
+    public Gebruiker getCurrentUser() {
+        return currentUser;
+    }
 
     public Program(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        rentals = new ArrayList<>();
-        observers = new ArrayList<>();
+        rentals = FXCollections.observableArrayList();
+        gebruikers = new ArrayList<>();
     }
 
     public void startProgram() {
@@ -26,8 +63,14 @@ public class Program {
         this.primaryStage.show();
         this.switchScreen(Screens.LOGIN);
         this.primaryStage.show();
-        MainController mainController = new MainController();
-        addObserver(mainController);
+    }
+
+    public void createNewLoginWindow() {
+        this.primaryStage = new Stage();
+        this.primaryStage.setTitle("Rent-A-Thing");
+        this.primaryStage.show();
+        this.switchScreen(Screens.LOGIN);
+        this.primaryStage.show();
     }
 
     public void switchScreen(Screens screen) {
@@ -43,46 +86,23 @@ public class Program {
         }
     }
 
-    // Method to add an observer
-    public void addObserver(RentableObserver observer) {
-        observers.add(observer);
-    }
-
-    // Method to remove an observer
-    public void removeObserver(RentableObserver observer) {
-        observers.remove(observer);
-    }
-
-    // Method to notify observers of changes
-    public void notifyObservers() {
-        for (RentableObserver observer : observers) {
-            observer.updateRentableTable();
+    public Gebruiker findUser(String username) {
+        for (Gebruiker gebruiker : gebruikers) {
+            if (gebruiker.getUsername().equals(username)) {
+                return gebruiker;
+            }
         }
+        return null;
     }
 
-    // Inside the methods where rent, return, or item addition occurs
-// After the changes have been made, call notifyObservers()
-
-    public void rentItem() {
-        // Existing code...
-
-        // After rent operation
-        notifyObservers();
+    public boolean validateLogin(String username, String password) {
+        Gebruiker gebruiker = findUser(username);
+        if (gebruiker != null) {
+            if (gebruiker.getPassword().equals(password)) {
+                this.currentUser = gebruiker;
+                return true;
+            }
+        }
+        return false;
     }
-
-    public void returnItem() {
-        // Existing code...
-
-        // After return operation
-        notifyObservers();
-    }
-
-    public void addItem() {
-        // Existing code...
-
-        // After adding an item
-        notifyObservers();
-    }
-
-
 }

@@ -40,5 +40,6 @@
             </HBox>
          </children>
       </VBox>
+      <Label fx:id="usernameLabel" layoutX="14.0" layoutY="768.0" />
    </children>
 </AnchorPane>
