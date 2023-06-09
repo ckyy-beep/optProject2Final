@@ -9,13 +9,16 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.optproject2final.Main.getProgram;
+
 public class Program {
     // Fields
     private Stage primaryStage;
     private Screens currentScreen;
     private Scene scene;
+    private Newsletter newsletter;
     public ObservableList<Rentable> rentals;
-    private final List<Gebruiker> gebruikers;
+    private List<Gebruiker> users;
     private Gebruiker currentUser;
 
 
@@ -29,7 +32,6 @@ public class Program {
     public void setScene(Scene scene) {
         this.scene = scene;
     }
-    public void addGebruikers(Gebruiker gebruiker) {this.gebruikers.add(gebruiker);}
     public void setCurrentUser(Gebruiker currentUser) {
         this.currentUser = currentUser;
     }
@@ -45,17 +47,31 @@ public class Program {
     public List<Rentable> getRentals() {
         return rentals;
     }
-    public List<Gebruiker> getGebruikers() {
-        return gebruikers;
-    }
     public Gebruiker getCurrentUser() {
         return currentUser;
+    }
+
+    public void addUsers(Gebruiker user) {
+        users.add(user);
+    }
+
+    public void removeUsers(Gebruiker user) {
+        users.remove(user);
+    }
+
+    public void setUsers(List<Gebruiker> users) {
+        this.users = users;
+    }
+
+    public List<Gebruiker> getUsers() {
+        return users;
     }
 
     public Program(Stage primaryStage) {
         this.primaryStage = primaryStage;
         rentals = FXCollections.observableArrayList();
-        gebruikers = new ArrayList<>();
+        users = new ArrayList<>();
+        newsletter = new Newsletter();
     }
 
     public void startProgram() {
@@ -77,7 +93,7 @@ public class Program {
         this.currentScreen = screen;
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/optproject2final/" + screen.getFileName() + ".fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/example/optproject2final/" + screen.getFileName() + ".fxml"));
             this.scene = new Scene(fxmlLoader.load());
             this.primaryStage.setScene(scene);
         } catch (Exception ex) {
@@ -86,8 +102,20 @@ public class Program {
         }
     }
 
+    public void setNewsletter(Newsletter newsletter) {
+        this.newsletter = newsletter;
+    }
+
+    public void setRentals(ObservableList<Rentable> rentals) {
+        this.rentals = rentals;
+    }
+
+    public Newsletter getNewsletter() {
+        return newsletter;
+    }
+
     public Gebruiker findUser(String username) {
-        for (Gebruiker gebruiker : gebruikers) {
+        for (Gebruiker gebruiker : users) {
             if (gebruiker.getUsername().equals(username)) {
                 return gebruiker;
             }
@@ -99,7 +127,7 @@ public class Program {
         Gebruiker gebruiker = findUser(username);
         if (gebruiker != null) {
             if (gebruiker.getPassword().equals(password)) {
-                this.currentUser = gebruiker;
+                getProgram().setCurrentUser(gebruiker);
                 return true;
             }
         }

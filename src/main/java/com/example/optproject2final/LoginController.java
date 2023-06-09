@@ -2,17 +2,12 @@
 
     import javafx.event.ActionEvent;
     import javafx.fxml.FXML;
-    import javafx.fxml.FXMLLoader;
-    import javafx.scene.Parent;
-    import javafx.scene.Scene;
     import javafx.scene.control.Button;
     import javafx.scene.control.Label;
     import javafx.scene.control.TextField;
     import javafx.stage.Stage;
 
-    import java.util.Objects;
-
-    import static com.example.optproject2final.HelloApplication.getProgram;
+    import static com.example.optproject2final.Main.getProgram;
 
     public class LoginController {
         @FXML
@@ -46,6 +41,8 @@
                     // Create a new login window
                     getProgram().createNewLoginWindow();
 
+                } else {
+                    loginMessageLabel.setText("Invalid login. Please try again.");
                 }
             }
         }

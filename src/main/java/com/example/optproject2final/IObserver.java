@@ -1,5 +1,5 @@
 package com.example.optproject2final;
 
-public interface Observer {
+public interface IObserver {
     void update();
 }

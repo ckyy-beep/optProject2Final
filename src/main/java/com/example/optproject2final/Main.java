@@ -1,15 +1,11 @@
 package com.example.optproject2final;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.List;
 
-public class HelloApplication extends Application {
+public class Main extends Application {
     private static Program program;
     public static Program getProgram() {return program;}
 
@@ -31,13 +27,16 @@ public class HelloApplication extends Application {
         Drill drill01 = factory3.createDrill();
         getProgram().rentals.add(drill01);
 
-        Gebruiker gebruiker01 = new Gebruiker("Jan", "admin");
-        Gebruiker gebnruiker02 = new Gebruiker("Piet", "admin");
-        Gebruiker gebruiker03 = new Gebruiker("Klaas", "admin");
+        Gebruiker gebruiker01 = new Medewerker("Jan", "admin");
+        Gebruiker gebruiker02 = new Medewerker("Piet", "admin");
+        Gebruiker gebruiker03 = new Medewerker("Klaas", "admin");
 
-        getProgram().addGebruikers(gebruiker01);
-        getProgram().addGebruikers(gebnruiker02);
-        getProgram().addGebruikers(gebruiker03);
+        getProgram().getNewsletter().addObserver(gebruiker01);
+        getProgram().addUsers(gebruiker01);
+        getProgram().getNewsletter().addObserver(gebruiker02);
+        getProgram().addUsers(gebruiker02);
+        getProgram().getNewsletter().addObserver(gebruiker03);
+        getProgram().addUsers(gebruiker03);
 
     }
 
