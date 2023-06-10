@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.optproject2final.MainController">
+<AnchorPane fx:id="logOutButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.optproject2final.MainController">
    <children>
       <VBox layoutX="12.0" layoutY="14.0" prefHeight="695.0" prefWidth="1176.0">
          <children>
@@ -36,10 +36,12 @@
                   <Button fx:id="returnButton" mnemonicParsing="false" onAction="#returnButtonOnAction" prefHeight="30.0" prefWidth="157.0" text="Return" />
                   <Button fx:id="rentButton" mnemonicParsing="false" onAction="#rentButtonOnAction" prefHeight="30.0" prefWidth="157.0" text="Rent" />
                   <Button fx:id="addButton" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="30.0" prefWidth="157.0" text="Add item" />
+                  <Button fx:id="uitloggenButton" mnemonicParsing="false" onAction="#uitloggenButtonOnAction" prefHeight="30.0" prefWidth="157.0" text="Log out" />
                </children>
             </HBox>
          </children>
       </VBox>
       <Label fx:id="usernameLabel" layoutX="14.0" layoutY="768.0" />
+      <Label fx:id="messageLabel" layoutX="549.0" layoutY="709.0" />
    </children>
 </AnchorPane>

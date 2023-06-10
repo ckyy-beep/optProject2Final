@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import static com.example.optproject2final.Main.getProgram;
 
 public class Program {
@@ -16,10 +17,10 @@ public class Program {
     private Stage primaryStage;
     private Screens currentScreen;
     private Scene scene;
-    private Newsletter newsletter;
     public ObservableList<Rentable> rentals;
     private List<Gebruiker> users;
     private Gebruiker currentUser;
+    private List<ItemAddedListener> itemAddedListeners;
 
 
     // Getters and Setters
@@ -71,7 +72,7 @@ public class Program {
         this.primaryStage = primaryStage;
         rentals = FXCollections.observableArrayList();
         users = new ArrayList<>();
-        newsletter = new Newsletter();
+        itemAddedListeners = new ArrayList<>();
     }
 
     public void startProgram() {
@@ -102,18 +103,6 @@ public class Program {
         }
     }
 
-    public void setNewsletter(Newsletter newsletter) {
-        this.newsletter = newsletter;
-    }
-
-    public void setRentals(ObservableList<Rentable> rentals) {
-        this.rentals = rentals;
-    }
-
-    public Newsletter getNewsletter() {
-        return newsletter;
-    }
-
     public Gebruiker findUser(String username) {
         for (Gebruiker gebruiker : users) {
             if (gebruiker.getUsername().equals(username)) {
@@ -132,5 +121,17 @@ public class Program {
             }
         }
         return false;
+    }
+
+    // Method to register an ItemAddedListener
+    public void registerItemAddedListener(ItemAddedListener listener) {
+        itemAddedListeners.add(listener);
+    }
+
+    // Method to notify all registered ItemAddedListeners
+    public void notifyItemAddedListeners(String message) {
+        for (ItemAddedListener listener : itemAddedListeners) {
+            listener.onItemAdded(message);
+        }
     }
 }

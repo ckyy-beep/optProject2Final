@@ -31,11 +31,8 @@ public class Main extends Application {
         Gebruiker gebruiker02 = new Medewerker("Piet", "admin");
         Gebruiker gebruiker03 = new Medewerker("Klaas", "admin");
 
-        getProgram().getNewsletter().addObserver(gebruiker01);
         getProgram().addUsers(gebruiker01);
-        getProgram().getNewsletter().addObserver(gebruiker02);
         getProgram().addUsers(gebruiker02);
-        getProgram().getNewsletter().addObserver(gebruiker03);
         getProgram().addUsers(gebruiker03);
 
     }
