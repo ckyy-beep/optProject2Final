@@ -13,6 +13,7 @@ import java.util.List;
 import static com.example.optproject2final.Main.getProgram;
 
 public class Program {
+
     // Fields
     private Stage primaryStage;
     private Screens currentScreen;
@@ -51,19 +52,15 @@ public class Program {
     public Gebruiker getCurrentUser() {
         return currentUser;
     }
-
     public void addUsers(Gebruiker user) {
         users.add(user);
     }
-
     public void removeUsers(Gebruiker user) {
         users.remove(user);
     }
-
     public void setUsers(List<Gebruiker> users) {
         this.users = users;
     }
-
     public List<Gebruiker> getUsers() {
         return users;
     }
