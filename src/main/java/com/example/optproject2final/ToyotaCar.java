@@ -24,16 +24,21 @@ public class ToyotaCar implements Car , Rentable {
             status = "Available";
         }
     }
+    @Override
     public String getType() {return type;}
+    @Override
     public String getBrand() {
         return brand;
     }
+    @Override
     public String getModel() {
         return model;
     }
+    @Override
     public String getDescription() {
         return description;
     }
+    @Override
     public boolean getIsRented() {return isRented;}
 
     public ToyotaCar() {

@@ -12,7 +12,7 @@ import java.util.List;
 
 import static com.example.optproject2final.Main.getProgram;
 
-public class Program {
+public class Program implements IObservable {
 
     // Fields
     private Stage primaryStage;
@@ -21,7 +21,7 @@ public class Program {
     public ObservableList<Rentable> rentals;
     private List<Gebruiker> users;
     private Gebruiker currentUser;
-    private List<ItemAddedListener> itemAddedListeners;
+    private final List<IObserverItemAddedListener> itemAddedListeners;
 
 
     // Getters and Setters
@@ -86,6 +86,14 @@ public class Program {
         this.switchScreen(Screens.LOGIN);
         this.primaryStage.show();
     }
+    public void openDetalWindow() {
+        this.primaryStage = new Stage();
+        this.primaryStage.setTitle("Rent-A-Thing");
+        this.primaryStage.show();
+        this.switchScreen(Screens.DETAIL);
+        this.primaryStage.show();
+    }
+
 
     public void switchScreen(Screens screen) {
         this.currentScreen = screen;
@@ -121,13 +129,18 @@ public class Program {
     }
 
     // Method to register an ItemAddedListener
-    public void registerItemAddedListener(ItemAddedListener listener) {
+    public void registerItemAddedListener(IObserverItemAddedListener listener) {
         itemAddedListeners.add(listener);
+    }
+
+    // Method to remove an ItemAddedListener
+    public void removeItemAddedListener(IObserverItemAddedListener listener) {
+        itemAddedListeners.remove(listener);
     }
 
     // Method to notify all registered ItemAddedListeners
     public void notifyItemAddedListeners(String message) {
-        for (ItemAddedListener listener : itemAddedListeners) {
+        for (IObserverItemAddedListener listener : itemAddedListeners) {
             listener.onItemAdded(message);
         }
     }

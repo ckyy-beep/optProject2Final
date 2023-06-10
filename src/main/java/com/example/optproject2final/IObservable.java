@@ -1,7 +1,7 @@
 package com.example.optproject2final;
 
 public interface IObservable {
-    void addObserver(Gebruiker observer);
-    void removeObserver(Gebruiker observer);
-    void notifyObservers();
+    void registerItemAddedListener(IObserverItemAddedListener listener);
+    void removeItemAddedListener(IObserverItemAddedListener listener);
+    void notifyItemAddedListeners(String message);
 }

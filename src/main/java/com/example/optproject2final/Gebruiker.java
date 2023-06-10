@@ -1,6 +1,6 @@
 package com.example.optproject2final;
 
-public abstract class Gebruiker implements  IObserver {
+public abstract class Gebruiker {
     private String userName;
     private String password;
 
@@ -20,11 +20,6 @@ public abstract class Gebruiker implements  IObserver {
     }
     public String getPassword() {
         return password;
-    }
-
-    @Override
-    public void update() {
-
     }
 
     public void showInformation() {

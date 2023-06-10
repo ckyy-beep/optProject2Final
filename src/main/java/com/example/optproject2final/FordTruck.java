@@ -24,16 +24,22 @@ public class FordTruck implements Truck, Rentable {
             status = "Available";
         }
     }
+
+    @Override
     public String getBrand() {
         return brand;
     }
+    @Override
     public String getModel() {
         return model;
     }
+    @Override
     public String getDescription() {
         return description;
     }
+    @Override
     public boolean getIsRented() {return isRented;}
+    @Override
     public String getType() {return type;}
 
     public FordTruck() {

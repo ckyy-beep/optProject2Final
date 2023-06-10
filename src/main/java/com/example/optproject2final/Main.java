@@ -30,10 +30,20 @@ public class Main extends Application {
         Gebruiker gebruiker01 = new Medewerker("Jan", "admin");
         Gebruiker gebruiker02 = new Medewerker("Piet", "admin");
         Gebruiker gebruiker03 = new Medewerker("Klaas", "admin");
+        Gebruiker gebruiker04 = new Medewerker("Henk", "admin");
+        Gebruiker gebruiker05 = new Medewerker("Paul", "admin");
+        Gebruiker gebruiker06 = new Medewerker("Pascal", "admin");
+        Gebruiker gebruiker07 = new Medewerker("Julius", "admin");
+        Gebruiker gebruiker08 = new Medewerker("Chris", "admin");
 
         getProgram().addUsers(gebruiker01);
         getProgram().addUsers(gebruiker02);
         getProgram().addUsers(gebruiker03);
+        getProgram().addUsers(gebruiker04);
+        getProgram().addUsers(gebruiker05);
+        getProgram().addUsers(gebruiker06);
+        getProgram().addUsers(gebruiker07);
+        getProgram().addUsers(gebruiker08);
 
     }
 

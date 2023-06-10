@@ -4,14 +4,22 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
+
 import static com.example.optproject2final.Main.getProgram;
 
-public class MainController implements ItemAddedListener {
+public class MainController implements IObserverItemAddedListener {
 
     @FXML
     private TableView<Rentable> table;
@@ -54,6 +62,9 @@ public class MainController implements ItemAddedListener {
         statusColumn.setCellValueFactory(new PropertyValueFactory<Rentable, String>("status"));
 
         table.setItems((ObservableList<Rentable>) getProgram().getRentals());
+
+        // Add double-click event listener to the TableView
+        table.setOnMouseClicked(this::handleItemDoubleClick);
     }
 
     public void addButtonOnAction() {
@@ -155,5 +166,43 @@ public class MainController implements ItemAddedListener {
         getProgram().setPrimaryStage((Stage) uitloggenButton.getScene().getWindow());
         getProgram().switchScreen(Screens.LOGIN);
 //        getProgram().getPrimaryStage().close();
+    }
+
+    public void handleItemDoubleClick(MouseEvent event) {
+        if (event.getClickCount() == 2) {
+            Rentable rentable = table.getSelectionModel().getSelectedItem();
+            if (rentable != null) {
+                // Create a new Stage for the pop-up window
+                Stage popupStage = new Stage();
+                popupStage.setTitle("Item Details");
+
+                // Create a VBox as the root container for the pop-up window
+                VBox root = new VBox();
+                root.setPadding(new Insets(10));
+
+                // Create and configure UI controls for item information
+                Label brandLabel = new Label("Brand: " + rentable.getBrand());
+                Label modelLabel = new Label("Model: " + rentable.getModel());
+                Label descriptionLabel = new Label("Description: " + rentable.getDescription());
+                Label typeLabel = new Label("Type: " + rentable.getType());
+                Label statusLabel = new Label("Rented out: " + rentable.getIsRented());
+
+                // Add UI controls to the root container
+                root.getChildren().addAll(brandLabel, modelLabel, descriptionLabel, typeLabel, statusLabel);
+
+                // Create a new Scene with the root container
+                Scene popupScene = new Scene(root);
+
+                // Set the scene for the pop-up window
+                popupStage.setScene(popupScene);
+
+//                // Set the width and height of the pop-up window
+//                popupStage.setWidth(200); // Set your desired width
+//                popupStage.setHeight(150); // Set your desired height
+
+                // Show the pop-up window
+                popupStage.show();
+            }
+        }
     }
 }
