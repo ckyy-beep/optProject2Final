@@ -16,15 +16,15 @@ public class Main extends Application {
         program.startProgram();
 
         RentalFactory factory = new ToyotaFactory();
-        Car car01 = factory.createCar();
+        Rentable car01 = factory.createProduct();
         getProgram().rentals.add(car01);
 
         RentalFactory factory2 = new FordFactory();
-        Truck truck01 = factory2.createTruck();
+        Rentable truck01 = factory2.createProduct();
         getProgram().rentals.add(truck01);
 
         RentalFactory factory3 = new BoschFactory();
-        Drill drill01 = factory3.createDrill();
+        Rentable drill01 = factory3.createProduct();
         getProgram().rentals.add(drill01);
 
         Gebruiker gebruiker01 = new Medewerker("Jan", "admin");

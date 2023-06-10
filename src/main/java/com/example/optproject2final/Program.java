@@ -86,13 +86,12 @@ public class Program implements IObservable {
         this.switchScreen(Screens.LOGIN);
         this.primaryStage.show();
     }
-    public void openDetalWindow() {
-        this.primaryStage = new Stage();
-        this.primaryStage.setTitle("Rent-A-Thing");
-        this.primaryStage.show();
-        this.switchScreen(Screens.DETAIL);
-        this.primaryStage.show();
-    }
+//    public void openDetalWindow() {
+//        this.primaryStage = new Stage();
+//        this.primaryStage.setTitle("Rent-A-Thing");
+//        this.primaryStage.show();
+//        this.primaryStage.show();
+//    }
 
 
     public void switchScreen(Screens screen) {

@@ -78,7 +78,7 @@ public class MainController implements IObserverItemAddedListener {
 
         if (type.equalsIgnoreCase("Car")) {
             RentalFactory factory = new ToyotaFactory();
-            Car car = factory.createCar();
+            Rentable car = factory.createProduct();
             getProgram().rentals.add(car);
             getProgram().notifyItemAddedListeners("Car added successfully");
 //            table.getItems().add(car);
@@ -224,10 +224,11 @@ public class MainController implements IObserverItemAddedListener {
 
             // Create and configure UI controls for item information
             Label brandLabel = new Label("Common Informatio: " + user.getUsername());
+            Label passwordLabel = new Label("Password: " + user.getPassword());
             Label modelLabel = new Label("Specific Information: " + user.getRole());
 
             // Add UI controls to the root container
-            root.getChildren().addAll(brandLabel, modelLabel);
+            root.getChildren().addAll(brandLabel, passwordLabel, modelLabel);
 
             // Create a new Scene with the root container
             Scene popupScene = new Scene(root);
