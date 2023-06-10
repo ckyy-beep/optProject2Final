@@ -65,6 +65,9 @@ public class MainController implements IObserverItemAddedListener {
 
         // Add double-click event listener to the TableView
         table.setOnMouseClicked(this::handleItemDoubleClick);
+
+        usernameLabel.setOnMouseClicked(this::handleUserLabelDoubleClick);
+
     }
 
     public void addButtonOnAction() {
@@ -203,6 +206,43 @@ public class MainController implements IObserverItemAddedListener {
                 // Show the pop-up window
                 popupStage.show();
             }
+        }
+    }
+
+    public void handleUserLabelDoubleClick(MouseEvent event) {
+        if (event.getClickCount() == 2) {
+
+            Gebruiker user = getProgram().getCurrentUser();
+
+            // Create a new Stage for the pop-up window
+            Stage popupStage = new Stage();
+            popupStage.setTitle("User Details");
+
+            // Create a VBox as the root container for the pop-up window
+            VBox root = new VBox();
+            root.setPadding(new Insets(10));
+
+            // Create and configure UI controls for item information
+            Label brandLabel = new Label("Common Informatio: " + user.getUsername());
+            Label modelLabel = new Label("Specific Information: " + user.getRole());
+
+            // Add UI controls to the root container
+            root.getChildren().addAll(brandLabel, modelLabel);
+
+            // Create a new Scene with the root container
+            Scene popupScene = new Scene(root);
+
+            // Set the scene for the pop-up window
+            popupStage.setScene(popupScene);
+
+//                // Set the width and height of the pop-up window
+//                popupStage.setWidth(200); // Set your desired width
+//                popupStage.setHeight(150); // Set your desired height
+
+            // Show the pop-up window
+            popupStage.show();
+
+            user.showInformation();
         }
     }
 }

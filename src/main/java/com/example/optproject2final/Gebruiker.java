@@ -33,4 +33,6 @@ public abstract class Gebruiker {
     }
 
     public abstract void showSpecificInformation();
+
+    public abstract String getRole();
 }
